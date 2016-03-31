@@ -1,0 +1,34 @@
+{
+  "name": "express-pino-logger",
+  "version": "0.0.1",
+  "description": "An express middleware to log with pino",
+  "main": "logger.js",
+  "scripts": {
+    "test": "standard && tap test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcollina/express-pino-logger.git"
+  },
+  "keywords": [
+    "express",
+    "connect",
+    "http",
+    "logger",
+    "fast",
+    "pino"
+  ],
+  "author": "Matteo Collina <hello@matteocollina.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcollina/express-pino-logger/issues"
+  },
+  "homepage": "https://github.com/mcollina/express-pino-logger#readme",
+  "dependencies": {
+    "pino": "^1.0.3"
+  },
+  "devDependencies": {
+    "standard": "^6.0.8",
+    "tap": "^5.7.0"
+  }
+}
