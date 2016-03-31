@@ -164,3 +164,30 @@ test('no express', function (t) {
   })
 })
 
+test('responseTime', function (t) {
+  var dest = split(JSON.parse)
+  var logger = pinoLogger(dest)
+
+  var server = http.createServer(handle)
+  function handle (req, res) {
+    logger(req, res)
+    setTimeout(function () {
+      res.end('hello world')
+    }, 100)
+  }
+
+  t.tearDown(function (cb) {
+    server.close(cb)
+  })
+
+  server.listen(0, '127.0.0.1', function (err) {
+    t.error(err)
+    doGet(server)
+  })
+
+  dest.on('data', function (line) {
+    t.ok(line.responseTime > 100, 'responseTime is defined and in ms')
+    t.end()
+  })
+})
+

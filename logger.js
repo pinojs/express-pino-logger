@@ -18,23 +18,28 @@ function pinoLogger (stream, opts) {
 
   return loggingMiddleware
 
-  function onResFinished (err, res) {
+  function onResFinished (err, res, startTime) {
+    var end = process.hrtime(startTime)
     var log = res.log
+    var responseTime = Math.round(end[0] * 1e3 + end[1] / 1e6)
 
     if (err) {
       log.error({
         res: res,
-        err: err
+        err: err,
+        responseTime: responseTime
       }, 'request errored')
       return
     }
 
     log.info({
-      res: res
+      res: res,
+      responseTime: responseTime
     }, 'request completed')
   }
 
   function loggingMiddleware (req, res, next) {
+    var startTime = process.hrtime()
     req.id = uuid.v4()
 
     var child = logger.child({ req: req })
@@ -43,7 +48,7 @@ function pinoLogger (stream, opts) {
     res.log = child
 
     eos(res, function (err) {
-      onResFinished(err, res)
+      onResFinished(err, res, startTime)
     })
 
     if (next) {
