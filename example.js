@@ -1,13 +1,12 @@
 'use strict'
 
 var app = require('express')()
-var http = require('http')
-var server = http.createServer(app)
+var pino = require('./')()
 
-app.use(require('./')())
+app.use(pino)
 
 app.get('/', function (req, res) {
   res.send('hello world')
 })
 
-server.listen(3000)
+app.listen(3000)
