@@ -19,7 +19,7 @@ function pinoLogger (stream, opts) {
   return loggingMiddleware
 
   function onResFinished (err, res) {
-    var log = res.req.log
+    var log = res.log
 
     if (err) {
       log.error({
@@ -40,6 +40,8 @@ function pinoLogger (stream, opts) {
     var child = logger.child({ req: req })
 
     req.log = child
+    res.log = child
+
     eos(res, function (err) {
       onResFinished(err, res)
     })

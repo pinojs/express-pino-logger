@@ -134,3 +134,33 @@ test('supports errors in the middleware', function (t) {
     t.end()
   })
 })
+
+test('no express', function (t) {
+  var dest = split(JSON.parse)
+  var logger = pinoLogger(dest)
+
+  var server = http.createServer(handle)
+  function handle (req, res) {
+    logger(req, res)
+    res.end('hello world')
+  }
+
+  t.tearDown(function (cb) {
+    server.close(cb)
+  })
+
+  server.listen(0, '127.0.0.1', function (err) {
+    t.error(err)
+    doGet(server)
+  })
+
+  dest.on('data', function (line) {
+    t.ok(line.req, 'req is defined')
+    t.ok(line.res, 'res is defined')
+    t.equal(line.msg, 'request completed', 'message is set')
+    t.equal(line.req.method, 'GET', 'method is get')
+    t.equal(line.res.statusCode, 200, 'statusCode is 200')
+    t.end()
+  })
+})
+
