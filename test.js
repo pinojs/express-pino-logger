@@ -80,26 +80,57 @@ test('allocate a unique id to every request', function (t) {
   })
 })
 
-// test('supports errors', function (t) {
-//   var dest = split(JSON.parse)
-//   var logger = pinoLogger(dest)
-//
-//   var app = setup(t, logger, function (err, server) {
-//     t.error(err)
-//     var address = server.address()
-//     http.get('http://' + address.address + ':' + address.port + '/error')
-//   })
-//
-//   app.get('/error', function (req, res) {
-//     res.emit('error', new Error('boom!'))
-//   })
-//
-//   dest.on('data', function (line) {
-//     t.ok(line.req, 'req is defined')
-//     t.ok(line.res, 'res is defined')
-//     t.equal(line.msg, 'request completed', 'message is set')
-//     t.equal(line.req.method, 'GET', 'method is get')
-//     t.equal(line.res.statusCode, 500, 'statusCode is 500')
-//     t.end()
-//   })
-// })
+test('supports errors in the response', function (t) {
+  var dest = split(JSON.parse)
+  var logger = pinoLogger(dest)
+
+  var app = setup(t, logger, function (err, server) {
+    t.error(err)
+    var address = server.address()
+    http.get('http://' + address.address + ':' + address.port + '/error')
+  })
+
+  app.get('/error', function (req, res) {
+    res.emit('error', new Error('boom!'))
+    res.end()
+  })
+
+  dest.on('data', function (line) {
+    t.ok(line.req, 'req is defined')
+    t.ok(line.res, 'res is defined')
+    t.ok(line.err, 'err is defined')
+    t.equal(line.msg, 'request errored', 'message is set')
+    t.equal(line.req.method, 'GET', 'method is get')
+    t.equal(line.res.statusCode, 200, 'statusCode is 200')
+    t.end()
+  })
+})
+
+test('supports errors in the middleware', function (t) {
+  var dest = split(JSON.parse)
+  var logger = pinoLogger(dest)
+
+  var app = setup(t, logger, function (err, server) {
+    t.error(err)
+    var address = server.address()
+    http.get('http://' + address.address + ':' + address.port + '/error')
+  })
+
+  app.get('/error', function (req, res, next) {
+    next(new Error('boom!'))
+  })
+
+  app.use(function (err, req, res, next) {
+    res.status(500).send({ err: err })
+  })
+
+  dest.on('data', function (line) {
+    t.ok(line.req, 'req is defined')
+    t.ok(line.res, 'res is defined')
+    t.notOk(line.err, 'err is not defined')
+    t.equal(line.msg, 'request completed', 'message is set')
+    t.equal(line.req.method, 'GET', 'method is get')
+    t.equal(line.res.statusCode, 500, 'statusCode is 200')
+    t.end()
+  })
+})

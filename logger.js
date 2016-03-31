@@ -25,7 +25,7 @@ function pinoLogger (stream, opts) {
       log.error({
         res: res,
         err: err
-      })
+      }, 'request errored')
       return
     }
 
