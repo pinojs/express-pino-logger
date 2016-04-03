@@ -21,7 +21,7 @@ npm i express-pino-logger --save
 'use strict'
 
 var app = require('express')()
-var pino = require('express-pino-logger)()
+var pino = require('express-pino-logger')()
 
 app.use(pino)
 
