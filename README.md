@@ -26,9 +26,10 @@ var pino = require('express-pino-logger')()
 app.use(pino)
 
 app.get('/', function (req, res) {
-  // each request has its own uuid
+  // each request has its own id
   // so you can track the log of each request
   // by using `req.log`
+  // the ids are cycled every 2^31 - 2
   req.log.info('something else')
   res.send('hello world')
 })
@@ -40,7 +41,7 @@ app.listen(3000)
 $ node example.js | pino
 [2016-03-31T16:53:21.079Z] INFO (46316 on MBP-di-Matteo): something else
     req: {
-      "id": "aa6d1b0c-a8ee-4093-bea6-765d81de126b",
+      "id": 1,
       "method": "GET",
       "url": "/",
       "headers": {
@@ -58,7 +59,7 @@ $ node example.js | pino
     }
     responseTime: 10
     req: {
-      "id": "aa6d1b0c-a8ee-4093-bea6-765d81de126b",
+      "id": 1,
       "method": "GET",
       "url": "/",
       "headers": {
