@@ -186,7 +186,8 @@ test('responseTime', function (t) {
   })
 
   dest.on('data', function (line) {
-    t.ok(line.responseTime > 100, 'responseTime is defined and in ms')
+    // let's take into account Node v0.10 is less precise
+    t.ok(line.responseTime >= 90, 'responseTime is defined and in ms')
     t.end()
   })
 })

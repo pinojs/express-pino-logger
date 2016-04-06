@@ -1,9 +1,8 @@
 'use strict'
 
 var pino = require('pino')
-// var onFinished = require('on-finished')
 var eos = require('end-of-stream')
-var uuid = require('uuid')
+var maxInt = 2147483647
 
 function pinoLogger (stream, opts) {
   opts = opts || {}
@@ -15,6 +14,10 @@ function pinoLogger (stream, opts) {
   var logger = pino(opts, stream)
 
   loggingMiddleware.logger = logger
+
+  var nextId = 0
+
+  stream = logger.stream
 
   return loggingMiddleware
 
@@ -40,7 +43,8 @@ function pinoLogger (stream, opts) {
 
   function loggingMiddleware (req, res, next) {
     var startTime = process.hrtime()
-    req.id = uuid.v4()
+    req.id = ++nextId
+    nextId = nextId % maxInt
 
     var child = logger.child({ req: req })
 
