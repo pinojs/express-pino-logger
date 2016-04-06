@@ -1,4 +1,4 @@
-# express-pino-logger
+# express-pino-logger&nbsp;&nbsp;[![Build Status](https://travis-ci.org/mcollina/express-pino-logger.svg)](https://travis-ci.org/mcollina/express-pino-logger)
 
 An [express](http://npm.im/express) middleware to log with
 [pino](https://github.com/mcollina/pino).
