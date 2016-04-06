@@ -3,12 +3,12 @@
 var http = require('http')
 var server = http.createServer(handle)
 
-var logger = require('../')({
+var pino = require('pino')({
   extreme: true
 })
 
 function handle (req, res) {
-  logger(req, res)
+  pino.info(req)
   res.end('hello world')
 }
 

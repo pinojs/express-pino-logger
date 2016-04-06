@@ -4,9 +4,13 @@ var pino = require('pino')
 var eos = require('end-of-stream')
 var maxInt = 2147483647
 
-function pinoLogger (stream, opts) {
-  opts = opts || {}
+function pinoLogger (opts, stream) {
+  if (opts && opts._writableState) {
+    stream = opts
+    opts = null
+  }
 
+  opts = opts || {}
   opts.serializers = opts.serializers || {}
   opts.serializers.req = opts.serializers.req || asReqValue
   opts.serializers.res = opts.serializers.res || pino.stdSerializers.res
