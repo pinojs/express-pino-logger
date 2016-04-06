@@ -8,7 +8,7 @@ From our benchmarks, this is 4x faster than
 faster than [winston-express](http://npm.im/winston-express).
 It is as fast as [morgan](http://npm.im/morgan),
 which is a usecase-specific logger, i.e. it does not provide a
-request-specific logger. With
+request-specific logger and it does not log in JSON. With
 [extreme](https://github.com/mcollina/pino#extreme) mode enable, it is
 faster than morgan.
 
