@@ -72,6 +72,11 @@ $ node example.js | pino
     }
 ```
 
+## API
+
+`express-pino-logger` has the same options of
+[pino](http://npm.im/pino), look at them there.
+
 ## License
 
 MIT
