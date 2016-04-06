@@ -6,7 +6,7 @@ An [express](http://npm.im/express) middleware to log with
 From our benchmarks, this is 4x faster than
 [express-bunyan-logger](http://npm.im/express-bunyan-logger) and 25%
 faster than [winston-express](http://npm.im/winston-express).
-It is slightly slower (< 10%) than [morgan](http://npm.im/morgan),
+It is slightly slower (< 5%) than [morgan](http://npm.im/morgan),
 which is a usecase-specific logger.
 
 ## Install
