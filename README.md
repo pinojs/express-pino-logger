@@ -6,8 +6,9 @@ An [express](http://npm.im/express) middleware to log with
 From our benchmarks, this is 4x faster than
 [express-bunyan-logger](http://npm.im/express-bunyan-logger) and 25%
 faster than [winston-express](http://npm.im/winston-express).
-It is slightly slower (< 5%) than [morgan](http://npm.im/morgan),
-which is a usecase-specific logger. With
+It is as fast as [morgan](http://npm.im/morgan),
+which is a usecase-specific logger, i.e. it does not provide a
+request-specific logger. With
 [extreme](https://github.com/mcollina/pino#extreme) mode enable, it is
 faster than morgan.
 
