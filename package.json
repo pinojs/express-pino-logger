@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/mcollina/express-pino-logger#readme",
   "dependencies": {
-    "end-of-stream": "^1.1.0",
     "pino": "^2.1.0"
   },
   "devDependencies": {
