@@ -1,16 +1,42 @@
 # express-pino-logger&nbsp;&nbsp;[![Build Status](https://travis-ci.org/mcollina/express-pino-logger.svg)](https://travis-ci.org/mcollina/express-pino-logger)
 
 An [express](http://npm.im/express) middleware to log with
-[pino](https://github.com/mcollina/pino).
+[pino](https://github.com/mcollina/pino). Incidentally, it also works
+without express.
 
-From our benchmarks, this is 4x faster than
-[express-bunyan-logger](http://npm.im/express-bunyan-logger) and 25%
-faster than [winston-express](http://npm.im/winston-express).
-It is as fast as [morgan](http://npm.im/morgan),
-which is a usecase-specific logger, i.e. it does not provide a
-request-specific logger and it does not log in JSON. With
-[extreme](https://github.com/mcollina/pino#extreme) mode enable, it is
-faster than morgan.
+To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](http://npm.im/express) logger in town.
+
+* [Installation](#install)
+* [Usage](#usage)
+* [Benchmarks](#benchmarks)
+* [API](#api)
+* [Team](#team)
+* [Acknowledgements](#acknowledgements)
+* [License](#license)
+
+## Benchmarks
+
+Benchmarks log each request/response pair while returning
+`'hello world'`, using
+[autocannon](https://github.com/mcollina/autocannon) with 100
+connections and 10 pipelined requests.
+
+* `express-bunyan-logger`: 1950 req/sec
+* `express-winston`: 4739 req/sec
+* `morgan`: 5812 req/sec
+* `express-pino-logger`: 6108 req/sec
+* `express-pino-logger` (extreme): 6594 req/sec
+* `express-pino-logger` (without express and extreme): 11988 req/sec
+
+All benchmarks where taken on a Macbook Pro 2014 (i7, 16GB of RAM).
+
+Whilst we're comparing `express-pino-logger` against [morgan](http://npm.im/morgan), this isn't really a fair contest. 
+
+Morgan doesn't support logging arbitrary data, nor does it output JSON. Further Morgan [uses a form of `eval`](https://github.com/expressjs/morgan/blob/5da5ff1f5446e3f3ff29d29a2d6582712612bf89/index.js#L383) to achieve high speed logging. Whilst probably safe, using `eval` at all tends to cause concern, particular when it comes to server-side JavaScript.
+
+The fact that `express-pino-logger` achieves higher throughput with JSON logging **and** arbitrary data, without using `eval`, serves to emphasise the high-speed capabilities of `express-pino-logger`. 
+
+With `express-pino-logger` you can have features, safety **and** speed. 
 
 ## Install
 
@@ -79,6 +105,8 @@ $ node example.js | pino
 
 `express-pino-logger` has the same options of
 [pino](http://npm.im/pino), look at them there.
+`express-pino-logger` attaches some listeners to the request, so that
+it will log when the request is completed.
 
 ## License
 
