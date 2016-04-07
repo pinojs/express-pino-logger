@@ -34,4 +34,4 @@ node_modules
 
 # 0x
 .__browserify*
-profile-*
+profile*
