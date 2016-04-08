@@ -1,7 +1,6 @@
 'use strict'
 
 var pino = require('pino')
-var eos = require('end-of-stream')
 var maxInt = 2147483647
 
 function pinoLogger (opts, stream) {
@@ -25,22 +24,25 @@ function pinoLogger (opts, stream) {
 
   return loggingMiddleware
 
-  function onResFinished (err, res, startTime) {
-    var end = process.hrtime(startTime)
-    var log = res.log
+  function onResFinished (err) {
+    this.removeListener('finish', onResFinished)
+    this.removeListener('error', onResFinished)
+
+    var end = process.hrtime(this.startTime)
+    var log = this.log
     var responseTime = Math.round(end[0] * 1e3 + end[1] / 1e6)
 
     if (err) {
       log.error({
-        res: res,
+        res: this,
         err: err,
-        responseTime: responseTime
+        responseTime: this.responseTime
       }, 'request errored')
       return
     }
 
     log.info({
-      res: res,
+      res: this,
       responseTime: responseTime
     }, 'request completed')
   }
@@ -54,10 +56,10 @@ function pinoLogger (opts, stream) {
 
     req.log = child
     res.log = child
+    res.startTime = startTime
 
-    eos(res, function (err) {
-      onResFinished(err, res, startTime)
-    })
+    res.on('finish', onResFinished)
+    res.on('error', onResFinished)
 
     if (next) {
       next()
