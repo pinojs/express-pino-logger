@@ -3,7 +3,9 @@
 var http = require('http')
 var server = http.createServer(handle)
 
-var logger = require('../')()
+var logger = require('../')({
+  extreme: true
+})
 
 function handle (req, res) {
   logger(req, res)

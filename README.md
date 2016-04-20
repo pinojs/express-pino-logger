@@ -19,16 +19,17 @@ To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](
 Benchmarks log each request/response pair while returning
 `'hello world'`, using
 [autocannon](https://github.com/mcollina/autocannon) with 100
-connections and 10 pipelined requests.
+connections and 10 pipelined requests (`autocannon -c 100 -p 10 http://localhost:3000`).
 
-* `express-bunyan-logger`: 1950 req/sec
-* `express-winston`: 4739 req/sec
-* `morgan`: 5812 req/sec
-* `express-pino-logger`: 6108 req/sec
-* `express-pino-logger` (extreme): 6594 req/sec
-* `express-pino-logger` (without express and extreme): 11988 req/sec
+* `express-bunyan-logger`: 2702 req/sec
+* `express-winston`: 5953 req/sec
+* `morgan`: 8570 req/sec
+* `express-pino-logger`: 9807 req/sec
+* `express-pino-logger` (extreme): 10407 req/sec
+* `express-pino-logger` (without express): 22240.73 req/seq
+* `express-pino-logger` (without express and extreme): 25536 req/sec
 
-All benchmarks where taken on a Macbook Pro 2014 (i7, 16GB of RAM).
+All benchmarks where taken on a Macbook Pro 2013 (2.6GHZ i7, 16GB of RAM). 
 
 Whilst we're comparing `express-pino-logger` against [morgan](http://npm.im/morgan), this isn't really a fair contest. 
 
