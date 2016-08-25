@@ -109,6 +109,18 @@ $ node example.js | pino
 `express-pino-logger` attaches some listeners to the request, so that
 it will log when the request is completed.
 
+You can also reuse an instance of `pino` by passing it in the
+constructor with:
+
+```
+'use strict'
+
+const pino = require('pino')()
+const expressPino = require('express-pino-logger')({
+  logger: pino
+})
+```
+
 ## License
 
 MIT
