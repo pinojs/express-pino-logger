@@ -1,7 +1,7 @@
-# express-pino-logger&nbsp;&nbsp;[![Build Status](https://travis-ci.org/mcollina/express-pino-logger.svg)](https://travis-ci.org/mcollina/express-pino-logger)
+# express-pino-logger&nbsp;&nbsp;[![Build Status](https://travis-ci.org/pinojs/express-pino-logger.svg)](https://travis-ci.org/pinojs/express-pino-logger)
 
 An [express](http://npm.im/express) middleware to log with
-[pino](https://github.com/mcollina/pino). Incidentally, it also works
+[pino](https://github.com/pinojs/pino). Incidentally, it also works
 without express.
 
 To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](http://npm.im/express) logger in town.
@@ -18,7 +18,7 @@ To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](
 
 Benchmarks log each request/response pair while returning
 `'hello world'`, using
-[autocannon](https://github.com/mcollina/autocannon) with 100
+[autocannon](https://github.com/pinojs/autocannon) with 100
 connections and 10 pipelined requests (`autocannon -c 100 -p 10 http://localhost:3000`).
 
 * `express-bunyan-logger`: 2702 req/sec

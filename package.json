@@ -7,10 +7,6 @@
     "test": "standard && tap test.js"
   },
   "precommit": "test",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mcollina/express-pino-logger.git"
-  },
   "keywords": [
     "express",
     "connect",
@@ -21,10 +17,6 @@
   ],
   "author": "Matteo Collina <hello@matteocollina.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mcollina/express-pino-logger/issues"
-  },
-  "homepage": "https://github.com/mcollina/express-pino-logger#readme",
   "dependencies": {
     "pino-http": "^1.2.0"
   },
@@ -39,5 +31,13 @@
     "standard": "^8.0.0",
     "tap": "^6.0.0",
     "winston": "^2.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinojs/express-pino-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pinojs/express-pino-logger/issues"
+  },
+  "homepage": "https://github.com/pinojs/express-pino-logger#readme"
 }
