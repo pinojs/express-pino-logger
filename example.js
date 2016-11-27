@@ -10,4 +10,14 @@ app.get('/', function (req, res) {
   res.send('hello world')
 })
 
+app.get('/error', function (req, res, next) {
+  next(new Error('kaboom'))
+})
+
+app.use(function (err, req, res, next) {
+  req.log.error(err)
+  res.statusCode = 500
+  res.end('error')
+})
+
 app.listen(3000)
