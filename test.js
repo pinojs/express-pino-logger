@@ -127,10 +127,10 @@ test('supports errors in the middleware', function (t) {
   dest.on('data', function (line) {
     t.ok(line.req, 'req is defined')
     t.ok(line.res, 'res is defined')
-    t.notOk(line.err, 'err is not defined')
-    t.equal(line.msg, 'request completed', 'message is set')
+    t.ok(line.err, 'err is defined')
+    t.equal(line.msg, 'request errored', 'message is set')
     t.equal(line.req.method, 'GET', 'method is get')
-    t.equal(line.res.statusCode, 500, 'statusCode is 200')
+    t.equal(line.res.statusCode, 500, 'statusCode is 500')
     t.end()
   })
 })
