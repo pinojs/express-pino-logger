@@ -18,7 +18,7 @@ To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](
 
 Benchmarks log each request/response pair while returning
 `'hello world'`, using
-[autocannon](https://github.com/pinojs/autocannon) with 100
+[autocannon](https://github.com/mcollina/autocannon) with 100
 connections and 10 pipelined requests (`autocannon -c 100 -p 10 http://localhost:3000`).
 
 * `express-bunyan-logger`: 2702 req/sec
