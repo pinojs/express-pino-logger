@@ -68,7 +68,7 @@ app.listen(3000)
 ```
 
 ```
-$ node example.js | pino
+$ node example.js | pino-pretty
 [2016-03-31T16:53:21.079Z] INFO (46316 on MBP-di-Matteo): something else
     req: {
       "id": 1,
