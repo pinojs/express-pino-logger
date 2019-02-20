@@ -7,7 +7,7 @@ without express.
 To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](http://npm.im/express) logger in town.
 
 * [Installation](#install)
-* [Usage](#usage)
+* [Example](#example)
 * [Benchmarks](#benchmarks)
 * [API](#api)
 * [Team](#team)
