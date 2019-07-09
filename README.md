@@ -4,7 +4,7 @@ An [express](http://npm.im/express) middleware to log with
 [pino](https://github.com/pinojs/pino). Incidentally, it also works
 without express.
 
-To our knowledge, `express-pino-logger` is the [fastest](#benchmarks) [express](http://npm.im/express) logger in town.
+To our knowledge, `express-pino-logger` is the [fastest express](#benchmarks) logger in town.
 
 * [Installation](#install)
 * [Usage](#usage)
