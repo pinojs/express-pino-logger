@@ -102,6 +102,42 @@ $ node example.js | pino-pretty
     }
 ```
 
+
+### Custom serializers
+
+The `req` object for logging is constructed in [pino-std-serializers](https://github.com/pinojs/pino-std-serializers and custom properties added to the `req` in previous middleware are not automatically included.
+
+The original `req` is  accessible in the custom serializer under `req.raw`.
+
+```js
+'use strict'
+
+var app = require('express')()
+var ExpressPinoLogger = require('express-pino-logger')()
+
+var pino = ExpressPinoLogger({
+  serializers: {
+    req: (req) => ({
+      method: req.method,
+      url: req.url,
+      user: req.raw.user,
+    }),
+  },
+})
+
+// middlware that augments the req - above where pino is added
+app.use((req, res, next) => {
+  req.user = 'testing';
+  next();
+})
+
+app.use(pino)
+
+...
+
+```
+
+
 ## API
 
 `express-pino-logger` has the same options of
