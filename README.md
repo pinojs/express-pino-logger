@@ -103,9 +103,9 @@ $ node example.js | pino-pretty
 ```
 
 
-### Custom serializers
+## Custom serializers
 
-The `req` object for logging is constructed in [pino-std-serializers](https://github.com/pinojs/pino-std-serializers and custom properties added to the `req` in previous middleware are not automatically included.
+The `req` object for logging is constructed by [pino-std-serializers](https://github.com/pinojs/pino-std-serializers) and custom properties added to the `req` in previous middleware are not automatically included.
 
 The original `req` is  accessible in the custom serializer under `req.raw`.
 
@@ -125,7 +125,7 @@ var pino = ExpressPinoLogger({
   },
 })
 
-// middlware that augments the req - above where pino is added
+// middleware that augments the req - must be added before the pino middleware
 app.use((req, res, next) => {
   req.user = 'testing';
   next();
