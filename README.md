@@ -14,6 +14,8 @@ To our knowledge, `express-pino-logger` is the [fastest express](#benchmarks) lo
 * [Acknowledgements](#acknowledgements)
 * [License](#license)
 
+**Notice**: This is a "meta-package" that only exists for search purposes and internally just exports [`pino-http`](https://github.com/pinojs/pino-http) under a different name without any additional changes or features (see [#41](https://github.com/pinojs/express-pino-logger/issues/41)).
+
 ## Benchmarks
 
 Benchmarks log each request/response pair while returning
