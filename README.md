@@ -1,4 +1,8 @@
-# express-pino-logger&nbsp;&nbsp;[![Build Status](https://travis-ci.org/pinojs/express-pino-logger.svg)](https://travis-ci.org/pinojs/express-pino-logger)
+# express-pino-logger
+[![npm version](https://img.shields.io/npm/v/express-pino-logger)](https://www.npmjs.com/package/express-pino-logger)
+[![Build Status](https://img.shields.io/github/workflow/status/pinojs/express-pino-logger/CI)](https://github.com/pinojs/express-pino-logger/actions)
+[![Known Vulnerabilities](https://snyk.io/test/github/pinojs/express-pino-logger/badge.svg)](https://snyk.io/test/github/pinojs/express-pino-logger)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
 
 An [express](http://npm.im/express) middleware to log with
 [pino](https://github.com/pinojs/pino). Incidentally, it also works
