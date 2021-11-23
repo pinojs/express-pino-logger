@@ -29,7 +29,7 @@
     "pre-commit": "^1.2.2",
     "split2": "^4.0.0",
     "standard": "^16.0.3",
-    "tap": "^14.0.0",
+    "tap": "^15.0.0",
     "winston": "^3.0.0"
   },
   "repository": {

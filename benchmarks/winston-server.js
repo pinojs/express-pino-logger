@@ -1,10 +1,10 @@
 'use strict'
 
-var app = require('express')()
-var http = require('http')
-var winston = require('winston')
-var winstonExpress = require('express-winston')
-var server = http.createServer(app)
+const app = require('express')()
+const http = require('http')
+const winston = require('winston')
+const winstonExpress = require('express-winston')
+const server = http.createServer(app)
 
 app.use(winstonExpress.logger({
   transports: [
