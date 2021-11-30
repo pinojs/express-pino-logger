@@ -1,7 +1,7 @@
 'use strict'
 
-var app = require('express')()
-var pino = require('./')()
+const app = require('express')()
+const pino = require('./')()
 
 app.use(pino)
 

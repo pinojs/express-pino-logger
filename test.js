@@ -1,14 +1,14 @@
 'use strict'
 
-var test = require('tap').test
-var http = require('http')
-var express = require('express')
-var pinoLogger = require('./')
-var split = require('split2')
+const test = require('tap').test
+const http = require('http')
+const express = require('express')
+const pinoLogger = require('./')
+const split = require('split2')
 
 function setup (t, middleware, cb) {
-  var app = express()
-  var server = http.createServer(app)
+  const app = express()
+  const server = http.createServer(app)
   app.use(middleware)
   server.listen(0, '127.0.0.1', function (err) {
     cb(err, server)
@@ -16,7 +16,7 @@ function setup (t, middleware, cb) {
   app.get('/', function (req, res) {
     res.end('hello world')
   })
-  t.tearDown(function (cb) {
+  t.teardown(function (cb) {
     server.close(cb)
   })
 
@@ -24,13 +24,13 @@ function setup (t, middleware, cb) {
 }
 
 function doGet (server) {
-  var address = server.address()
+  const address = server.address()
   http.get('http://' + address.address + ':' + address.port)
 }
 
 test('default settings', function (t) {
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
 
   setup(t, logger, function (err, server) {
     t.error(err)
@@ -50,8 +50,8 @@ test('default settings', function (t) {
 test('exposes the internal pino', function (t) {
   t.plan(1)
 
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
 
   dest.on('data', function (line) {
     t.equal(line.msg, 'hello world')
@@ -63,9 +63,9 @@ test('exposes the internal pino', function (t) {
 test('allocate a unique id to every request', function (t) {
   t.plan(5)
 
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
-  var lastId = null
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
+  let lastId = null
 
   setup(t, logger, function (err, server) {
     t.error(err)
@@ -74,19 +74,19 @@ test('allocate a unique id to every request', function (t) {
   })
 
   dest.on('data', function (line) {
-    t.notEqual(line.req.id, lastId)
+    t.not(line.req.id, lastId)
     lastId = line.req.id
     t.ok(line.req.id, 'req.id is defined')
   })
 })
 
 test('supports errors in the response', function (t) {
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
 
-  var app = setup(t, logger, function (err, server) {
+  const app = setup(t, logger, function (err, server) {
     t.error(err)
-    var address = server.address()
+    const address = server.address()
     http.get('http://' + address.address + ':' + address.port + '/error')
   })
 
@@ -107,12 +107,12 @@ test('supports errors in the response', function (t) {
 })
 
 test('supports errors in the middleware', function (t) {
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
 
-  var app = setup(t, logger, function (err, server) {
+  const app = setup(t, logger, function (err, server) {
     t.error(err)
-    var address = server.address()
+    const address = server.address()
     http.get('http://' + address.address + ':' + address.port + '/error')
   })
 
@@ -136,16 +136,16 @@ test('supports errors in the middleware', function (t) {
 })
 
 test('no express', function (t) {
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
 
-  var server = http.createServer(handle)
+  const server = http.createServer(handle)
   function handle (req, res) {
     logger(req, res)
     res.end('hello world')
   }
 
-  t.tearDown(function (cb) {
+  t.teardown(function (cb) {
     server.close(cb)
   })
 
@@ -165,10 +165,10 @@ test('no express', function (t) {
 })
 
 test('responseTime', function (t) {
-  var dest = split(JSON.parse)
-  var logger = pinoLogger(dest)
+  const dest = split(JSON.parse)
+  const logger = pinoLogger(dest)
 
-  var server = http.createServer(handle)
+  const server = http.createServer(handle)
   function handle (req, res) {
     logger(req, res)
     setTimeout(function () {
@@ -176,7 +176,7 @@ test('responseTime', function (t) {
     }, 100)
   }
 
-  t.tearDown(function (cb) {
+  t.teardown(function (cb) {
     server.close(cb)
   })
 

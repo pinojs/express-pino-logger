@@ -1,8 +1,8 @@
 'use strict'
 
-var app = require('express')()
-var http = require('http')
-var server = http.createServer(app)
+const app = require('express')()
+const http = require('http')
+const server = http.createServer(app)
 
 app.use(require('morgan')('combined'))
 
