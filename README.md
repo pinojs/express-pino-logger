@@ -147,7 +147,7 @@ app.use(pino)
 ## API
 
 `express-pino-logger` has the same options of
-[pino](http://npm.im/pino), look at them there.
+[pino-http](http://npm.im/pino-http), look at them there.
 `express-pino-logger` attaches some listeners to the request, so that
 it will log when the request is completed.
 
