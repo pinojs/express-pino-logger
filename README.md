@@ -48,7 +48,7 @@ With `express-pino-logger` you can have features, safety **and** speed.
 ## Install
 
 ```
-npm i express-pino-logger --save
+npm i express-pino-logger
 ```
 
 ## Example
