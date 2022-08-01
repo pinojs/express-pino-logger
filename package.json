@@ -18,7 +18,7 @@
   "author": "Matteo Collina <hello@matteocollina.com>",
   "license": "MIT",
   "dependencies": {
-    "pino-http": "^7.0.0"
+    "pino-http": "^8.2.0"
   },
   "devDependencies": {
     "express": "^4.16.3",
