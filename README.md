@@ -56,7 +56,7 @@ npm i express-pino-logger
 'use strict'
 
 var app = require('express')()
-var pino = require('express-pino-logger')
+var pino = require('express-pino-logger')()
 
 app.use(pino)
 
