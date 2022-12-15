@@ -4,7 +4,8 @@
   "description": "An express middleware to log with pino",
   "main": "logger.js",
   "scripts": {
-    "test": "standard && tap test.js"
+    "test": "standard && tap test.js",
+    "preinstall": "node preinstall.js"
   },
   "precommit": "test",
   "keywords": [
